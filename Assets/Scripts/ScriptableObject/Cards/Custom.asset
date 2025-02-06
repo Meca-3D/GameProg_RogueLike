@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d52e910f2b82dc84c8c92b0ce4366112, type: 3}
-  m_Name: PM
+  m_Name: Custom
   m_EditorClassIdentifier: 
-  weaponFireRate: 9
-  weaponDamage: 4
-  weaponBulletSpeed: 8
-  weaponBulletSpread: 15
-  weaponBulletAmount: 1
-  weaponName: PM
+  weaponFireRate: 50
+  weaponDamage: 1
+  weaponBulletSpeed: 50
+  weaponBulletSpread: 20
+  weaponBulletAmount: 2
+  weaponName: Custom
