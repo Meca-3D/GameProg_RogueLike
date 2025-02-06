@@ -1,16 +1,27 @@
+using System;
 using UnityEngine;
 
 public class PlayerBullet : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Rigidbody2D rb;
+
+    public float bulletSpeed;
+
+    public float bulletLifeTime;
+
+    public float damage;
+
+    private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
+        rb.linearVelocity = transform.right * bulletSpeed;
         
+        Destroy(gameObject, bulletLifeTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        Destroy(gameObject);
     }
 }

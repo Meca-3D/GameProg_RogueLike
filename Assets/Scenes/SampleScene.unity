@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446189127}
   - component: {fileID: 446189128}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AimPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1033725347}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 1096563936}
   - component: {fileID: 1096563935}
   - component: {fileID: 1096563934}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,6 +476,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c6cf03ec4fbaac4c94f7638826c9d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeedStat: 5
+  maxHealthStat: 0
+  fireRate: 0
+  damage: 0
+  bulletSpeed: 0
+  bulletSpread: 0
+  bulletAmount: 0
+  bulletLifeTime: 0
 --- !u!114 &1096563935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,16 +496,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39a653548682b3748a78239c36630555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  movementAction:
-    m_Name: Movement
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 903ca25c-95ca-4138-b491-bdee5b41c052
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  firePoint: {fileID: 1033725347}
+  bulletPrefab: {fileID: 5754511464636522183, guid: 5ea1de78b5eb62d42977bb218dce319c, type: 3}
+  moveSpeed: 5
+  maxHealth: 0
+  health: 0
+  currentWeapons: {fileID: 11400000, guid: 0213bb8ea998a7745910a3e87151e05d, type: 2}
 --- !u!61 &1096563936
 BoxCollider2D:
   m_ObjectHideFlags: 0

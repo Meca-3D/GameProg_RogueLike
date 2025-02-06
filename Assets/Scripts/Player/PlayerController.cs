@@ -1,38 +1,73 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] IA_PlayerMovement controls = null;
-    [SerializeField] private float movementSpeed = 5;
-    [SerializeField] private InputAction movementAction = null;
+    private Rigidbody2D rb;
+    private PlayerStats playerStats;
 
-    private void Awake()
+    public Transform firePoint;
+    public Transform bulletPrefab;
+
+    public float moveSpeed;
+    public int maxHealth;
+    public int health;
+
+    public PlayerWeapons currentWeapons;
+
+    private bool isFiring = false;
+    private float fireTimer;
+
+    private void Start()
     {
-        controls = new IA_PlayerMovement();
+        rb = GetComponent<Rigidbody2D>();
+        playerStats.GetComponent<PlayerStats>();
+        RefreshStats();
+        health = maxHealth;
     }
 
-    private void OnEnable()
+    public void RefreshStats()
     {
-        movementAction = controls.Movement.Move;
-        movementAction.Enable();
+        moveSpeed = playerStats.moveSpeedStat;
+        maxHealth = playerStats.maxHealthStat;
     }
 
-    void Move()
+    private void Update()
     {
-        Vector2 dir = movementAction.ReadValue<Vector2>();
-        transform.position += (transform.right * movementSpeed * Time.deltaTime * dir.x) + (transform.up * movementSpeed * Time.deltaTime * dir.y);
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        rb.linearVelocity = new Vector2(moveX * moveSpeed, moveY * moveSpeed);
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            isFiring = true;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            isFiring = false;
+        }
+
+        if (isFiring)
+        {
+            if (fireTimer > 1 / currentWeapons.weaponFireRate)
+            {
+                fireTimer = 0;
+                Shoot();
+            }   
+        }
+
+        fireTimer += Time.deltaTime;
     }
 
-    void Start()
+    public void Shoot()
     {
-        
-    }
-
-    void Update()
-    {
-        Move();
+        for (int i = 0; i < currentWeapons.weaponBulletAmount; i++)
+        {
+            Transform spawnBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            PlayerBullet bullet = spawnBullet.GetComponent<PlayerBullet>();
+            bullet.damage = currentWeapons.weaponDamage;
+            bullet.bulletSpeed = currentWeapons.weaponBulletSpeed;
+            spawnBullet.Rotate(0,0, Random.Range(-currentWeapons.weaponBulletSpread, currentWeapons.weaponBulletSpread));
+        }
     }
 }
