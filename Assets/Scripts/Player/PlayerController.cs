@@ -17,12 +17,12 @@ public class PlayerControl : MonoBehaviour
     private float fireTimer;
 
     private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        playerStats.GetComponent<PlayerStats>();
-        RefreshStats();
-        health = maxHealth;
-    }
+{
+    rb = GetComponent<Rigidbody2D>();
+    playerStats = GetComponent<PlayerStats>();
+    RefreshStats();
+    health = maxHealth;
+}
 
     public void RefreshStats()
     {
@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour
 
         if (isFiring)
         {
-            if (fireTimer > 1 / currentWeapons.weaponFireRate)
+            if (fireTimer > 1 / currentWeapons.weaponFireRate * (1 + -playerStats.fireRate))
             {
                 fireTimer = 0;
                 Shoot();
@@ -61,13 +61,14 @@ public class PlayerControl : MonoBehaviour
 
     public void Shoot()
     {
-        for (int i = 0; i < currentWeapons.weaponBulletAmount; i++)
+        for (int i = 0; i < currentWeapons.weaponBulletAmount + playerStats.bulletAmount; i++)
         {
             Transform spawnBullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             PlayerBullet bullet = spawnBullet.GetComponent<PlayerBullet>();
-            bullet.damage = currentWeapons.weaponDamage;
-            bullet.bulletSpeed = currentWeapons.weaponBulletSpeed;
-            spawnBullet.Rotate(0,0, Random.Range(-currentWeapons.weaponBulletSpread, currentWeapons.weaponBulletSpread));
+            bullet.damage = currentWeapons.weaponDamage * (1 + -playerStats.damage);
+            bullet.bulletLifeTime *= 1 + playerStats.bulletLifeTime;
+            bullet.bulletSpeed = currentWeapons.weaponBulletSpeed * (1 + -playerStats.bulletSpeed);
+            spawnBullet.Rotate(0,0, Random.Range(-currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread), currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread)));
         }
     }
 }

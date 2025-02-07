@@ -880,7 +880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeedStat: 5
   maxHealthStat: 0
-  fireRate: 1
+  fireRate: 0
   damage: 0
   bulletSpeed: 0
   bulletSpread: 0
@@ -903,7 +903,7 @@ MonoBehaviour:
   moveSpeed: 5
   maxHealth: 0
   health: 0
-  currentWeapons: {fileID: 11400000, guid: d3871240919832f498a5be5bf66d351a, type: 2}
+  currentWeapons: {fileID: 11400000, guid: eef0651c43f8795428cf9414e7f86131, type: 2}
 --- !u!61 &1096563936
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1892,6 +1892,58 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1969007800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1969007802}
+  - component: {fileID: 1969007801}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1969007801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969007800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271bfb50e54bef84d9771c591f11e5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnIndicatorPrefab: {fileID: 8671559516202523226, guid: 3d570f2a5691c4341ab5694fa53afbe6, type: 3}
+  enmiesToSpawn:
+  - {fileID: 5855643550689809463, guid: 80893569ddaba604a88064ef66bf9394, type: 3}
+  - {fileID: 4480448096719254605, guid: e0e7dc13933098e41ae4d8bb9d207b9a, type: 3}
+  - {fileID: 7604834809644676870, guid: 9c5fda06919b8344d836fcb2ff7db682, type: 3}
+  spawnSpeed: 3
+  spawnAmount: 2
+  enemyMapSize: 1
+--- !u!4 &1969007802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969007800}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026978667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,4 +2118,5 @@ SceneRoots:
   - {fileID: 1934280603}
   - {fileID: 1968645692}
   - {fileID: 1663931414}
+  - {fileID: 1969007802}
   - {fileID: 1096563939}
