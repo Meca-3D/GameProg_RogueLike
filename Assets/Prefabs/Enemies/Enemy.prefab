@@ -97,6 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8819262891089097342}
   - component: {fileID: 5255991276348609376}
+  - component: {fileID: 6880971136536627035}
   - component: {fileID: 3563970452823995884}
   - component: {fileID: 4539622626917526166}
   - component: {fileID: 3780156073513872412}
@@ -180,6 +181,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6880971136536627035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508470855469215172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 423190254867ed14abfbf237dafde4ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpClump: {fileID: 3705238338930026316, guid: 47c1b1d69002a244685fe7cfdf56af1d, type: 3}
+  xpAmount: 10
 --- !u!114 &3563970452823995884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 5
   health: 0
+  dyingEffect: {fileID: 8671629307550948435, guid: 9b5580d73865cfa458b70160075a108f, type: 3}
 --- !u!114 &4539622626917526166
 MonoBehaviour:
   m_ObjectHideFlags: 0

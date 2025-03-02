@@ -20,11 +20,12 @@ public class PlayerBullet : MonoBehaviour
         Destroy(gameObject, bulletLifeTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.TryGetComponent<EnemyHealth>(out EnemyHealth enemyScript))
         {
             enemyScript.TakeDamage(damage);
+            Destroy(gameObject);
         }
         Destroy(gameObject);
     }

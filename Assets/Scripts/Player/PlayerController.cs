@@ -17,6 +17,8 @@ public class PlayerControl : MonoBehaviour
     private bool isFiring = false;
     private float fireTimer;
 
+    public GameObject dyingEffect;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,8 +54,8 @@ public class PlayerControl : MonoBehaviour
         {
             if (fireTimer > 1 / currentWeapons.weaponFireRate * (1 + -playerStats.fireRate))
             {
-                fireTimer = 0;
                 Shoot();
+                fireTimer = 0;
             }
         }
 
@@ -80,6 +82,7 @@ public class PlayerControl : MonoBehaviour
         {
             transform.GetComponentInChildren<Camera>().transform.parent = null;
             GameObject.FindObjectOfType<GameManager>().playerAlive = false;
+            Instantiate(dyingEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
