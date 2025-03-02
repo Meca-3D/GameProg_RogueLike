@@ -71,4 +71,15 @@ public class PlayerControl : MonoBehaviour
             spawnBullet.Rotate(0,0, Random.Range(-currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread), currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread)));
         }
     }
+
+    public void TakeDamage(float damageAmount)
+    {
+        health -= damageAmount;
+        if (health <= 0)
+        {
+            transform.GetComponentInChildren<Camera>().transform.parent = null;
+            GameObject.FindObjectOfType<GameManager>().playerAlive = false;
+            Destroy(gameObject);
+        }
+    }
 }
