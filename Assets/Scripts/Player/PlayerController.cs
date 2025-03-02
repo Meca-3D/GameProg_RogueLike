@@ -1,4 +1,5 @@
 using UnityEngine;
+
 public class PlayerControl : MonoBehaviour
 {
     private Rigidbody2D rb;
@@ -8,8 +9,8 @@ public class PlayerControl : MonoBehaviour
     public Transform bulletPrefab;
 
     public float moveSpeed;
-    public int maxHealth;
-    public int health;
+    public float maxHealth;
+    public float health;
 
     public PlayerWeapons currentWeapons;
 
@@ -17,12 +18,12 @@ public class PlayerControl : MonoBehaviour
     private float fireTimer;
 
     private void Start()
-{
-    rb = GetComponent<Rigidbody2D>();
-    playerStats = GetComponent<PlayerStats>();
-    RefreshStats();
-    health = maxHealth;
-}
+    {
+        rb = GetComponent<Rigidbody2D>();
+        playerStats = GetComponent<PlayerStats>();
+        RefreshStats();
+        health = maxHealth; // Initialisation correcte des points de vie
+    }
 
     public void RefreshStats()
     {
@@ -53,7 +54,7 @@ public class PlayerControl : MonoBehaviour
             {
                 fireTimer = 0;
                 Shoot();
-            }   
+            }
         }
 
         fireTimer += Time.deltaTime;
@@ -68,7 +69,7 @@ public class PlayerControl : MonoBehaviour
             bullet.damage = currentWeapons.weaponDamage * (1 + -playerStats.damage);
             bullet.bulletLifeTime *= 1 + playerStats.bulletLifeTime;
             bullet.bulletSpeed = currentWeapons.weaponBulletSpeed * (1 + -playerStats.bulletSpeed);
-            spawnBullet.Rotate(0,0, Random.Range(-currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread), currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread)));
+            spawnBullet.Rotate(0, 0, Random.Range(-currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread), currentWeapons.weaponBulletSpread * (1 + -playerStats.bulletSpread)));
         }
     }
 

@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6398992824707502140}
   - component: {fileID: 6408312363114679657}
+  - component: {fileID: 7664501476505711547}
   - component: {fileID: 835995557008198648}
-  - component: {fileID: 8357258349165442094}
+  - component: {fileID: 5373595320607375467}
   m_Layer: 0
   m_Name: EnemySpawnerIndicator
   m_TagString: Untagged
@@ -89,6 +90,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7664501476505711547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8671559516202523226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271bfb50e54bef84d9771c591f11e5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnIndicatorPrefab: {fileID: 0}
+  enmiesToSpawn:
+  - {fileID: 4508470855469215172, guid: eca059ec322365145912719f729bb316, type: 3}
+  spawnSpeed: 3
+  spawnAmount: 2
+  enemyMapSize: 1
 --- !u!114 &835995557008198648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   indicatorLenght: 2
   enemyToSpawn: {fileID: 0}
---- !u!95 &8357258349165442094
+--- !u!95 &5373595320607375467
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -113,7 +132,7 @@ Animator:
   m_GameObject: {fileID: 8671559516202523226}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e9cd3310637b24c4c8a881815a5b22dc, type: 2}
+  m_Controller: {fileID: 9100000, guid: a27426bd38b88fd4fb060fe04da1010c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

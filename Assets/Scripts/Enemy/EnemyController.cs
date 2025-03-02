@@ -16,24 +16,43 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerPos = GameObject.FindObjectOfType<PlayerControl>().transform;
+        if (GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>().playerAlive)
+        {
+            playerPos = GameObject.FindObjectOfType<PlayerControl>().transform;
+        }
     }
 
     private void Update()
     {
-        Vector2 direction = playerPos.position - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
-
-        if (!isAttacking)
+        if (GameObject.FindObjectOfType<GameManager>().GetComponent<GameManager>().playerAlive)
         {
-            rb.linearVelocity = transform.right * enemySpeed;
+            Vector2 direction = playerPos.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, rotateSpeed * Time.deltaTime);
+
+            rb.velocity = transform.right * enemySpeed;
+
+            if (isAttacking)
+            {
+                playerPos.GetComponent<PlayerControl>().TakeDamage(enemyDamage);
+            }
         }
+    }
 
-        if (isAttacking)
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.TryGetComponent<PlayerControl>(out PlayerControl playerScript))
         {
-            playerPos.GetComponent<PlayerControl>().TakeDamage(enemyDamage);
+            isAttacking = true;
+        }
+    }
+    
+    public void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.TryGetComponent<PlayerControl>(out PlayerControl playerScript))
+        {
+            isAttacking = false;
         }
     }
 }

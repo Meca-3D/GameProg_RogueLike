@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public float moveSpeedStat;
-    public int maxHealthStat;
+    public float maxHealthStat;
     
     public float fireRate;
     public float damage;
